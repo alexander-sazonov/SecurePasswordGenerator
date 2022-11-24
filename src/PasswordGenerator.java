@@ -18,12 +18,24 @@ public class PasswordGenerator {
 
     public static String generateStrongPassword() {
 
-        return "";
+        StringBuilder result = new StringBuilder(PASSWORD_LENGTH);
+        result.append(generateRandomString(CHAR_LOWERCASE, 2));
+        result.append(generateRandomString(CHAR_UPPERCASE, 2));
+        result.append(generateRandomString(DIGIT, 2));
+        result.append(generateRandomString(SPECIAL, 2));
+        result.append(generateRandomString(PASSWORD_ALLOW, 12));
+        return result.toString();
     }
 
     public static String generateRandomString(String str, int charCount) {
+        StringBuilder result = new StringBuilder(str.length());
+        for (int i = 0; i < charCount; i++) {
+            int rndIndex = random.nextInt(str.length());
+            char c = str.charAt(rndIndex);
+            result.append(c);
+        }
 
-        return "";
+        return result.toString();
     }
 
     public static String shuffleString(String str) {
@@ -31,6 +43,13 @@ public class PasswordGenerator {
         return "";
 
     }
+
+    public static void main(String[] args) {
+        System.out.println(generateStrongPassword());
+
+
+    }
+
 
 
 }
