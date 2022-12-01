@@ -24,7 +24,7 @@ public class PasswordGenerator {
         result.append(generateRandomString(DIGIT, 2));
         result.append(generateRandomString(SPECIAL, 2));
         result.append(generateRandomString(PASSWORD_ALLOW, 12));
-        return result.toString();
+        return shuffleString(result.toString());
     }
 
     public static String generateRandomString(String str, int charCount) {
@@ -39,8 +39,15 @@ public class PasswordGenerator {
     }
 
     public static String shuffleString(String str) {
+        StringBuilder result = new StringBuilder(str.length());
+        StringBuilder temp = new StringBuilder(str);
+        for (int i = 0; i < str.length(); i++) {
+            int k = random.nextInt(temp.length());
+            result.append(temp.charAt(k));
+            temp.deleteCharAt(k);
 
-        return "";
+        }
+        return result.toString();
 
     }
 
